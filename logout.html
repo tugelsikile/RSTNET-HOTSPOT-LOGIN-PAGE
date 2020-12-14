@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hotspot Login > Logout</title>
+	<script src="assets/js/jquery.min.js"></script>
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/font/flaticon.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+<body>
+	<script language="JavaScript">
+	<!--
+	    function openLogin() {
+		if (window.name != 'hotspot_logout') return true;
+		open('$(link-login)', '_blank', '');
+		window.close();
+		return false;
+	    }
+	//-->
+	</script>
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-6"></div>
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header text-center"><strong>Anda baru saja keluar</strong></div>
+					<div class="card-body">
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="flaticon-user-images"></i></span>
+							</div>
+							<input type="text" class="form-control rounded-0" disabled value="$(username)">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="flaticon-ip"></i></span>
+							</div>
+							<input type="text" class="form-control rounded-0" disabled value="$(ip)">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="flaticon-ip"></i></span>
+							</div>
+							<input type="text" class="form-control rounded-0" disabled value="$(mac)">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="flaticon-back-in-time"></i></span>
+							</div>
+							<input type="text" class="form-control rounded-0" disabled value="$(uptime)">
+						</div>
+						$(if session-time-left)
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="flaticon-back-in-time"></i></span>
+							</div>
+							<input type="text" class="form-control rounded-0" disabled value="$(session-time-left)">
+						</div>
+						$(endif)
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="flaticon-server"></i></span>
+							</div>
+							<input type="text" class="form-control rounded-0" disabled value="$(bytes-in-nice) / $(bytes-out-nice)">
+						</div>
+						<div class="text-center">
+							<form action="$(link-login)" name="login" onSubmit="return openLogin()">
+								<button class="btn btn-primary rounded-0"><i class="flaticon-smartwatch"></i> LOGIN</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

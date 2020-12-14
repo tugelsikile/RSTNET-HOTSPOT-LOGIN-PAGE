@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hotspot Login</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/font/flaticon.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script src="assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/md5.js"></script>
+	<script type="text/javascript">
+        <!--
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+        //-->
+		$(document).on('keyup','#username',function () {
+		    var jenis = $('.btn-group').find('.active').attr('data-type');
+		    if (jenis == 'voucher'){
+		        var username = $('#username').val();
+		        $('#password').val(username);
+			}
+        });
+	</script>
+
+</head>
+<body>
+	<div class="d-none">
+		$(if chap-id)
+		<form name="sendin" action="$(link-login-only)" method="post">
+			<input type="hidden" name="username" />
+			<input type="hidden" name="password" />
+			<input type="hidden" name="dst" value="$(link-orig)" />
+			<input type="hidden" name="popup" value="true" />
+		</form>
+		$(endif)
+	</div>
+	<div class="row">
+		<div class="col-md-6"></div>
+		<div class="col-md-6">
+			<div class="p-4">
+				<div class="card">
+					<div class="card-body">
+						<div class="text-center"><img src="assets/images/logo-rstnet.png" width="70%" class="mb-3"></div>
+						<div class="btn-group d-block mb-3 text-center">
+							<a href="#" data-type="members" onclick="changeMode(this);return false" class="btn btn-primary active">Members</a>
+							<a href="#" data-type="voucher" onclick="changeMode(this);return false" class="btn btn-primary">Voucher</a>
+						</div>
+						<form name="login" action="$(link-login-only)" method="post"
+							  $(if chap-id) onSubmit="return doLogin()" $(endif) >
+							<input type="hidden" name="dst" value="$(link-orig)" />
+							<input type="hidden" name="popup" value="true" />
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<span class="input-group-text rounded-0"><i class="flaticon-user-images"></i></span>
+								</div>
+								<input class="form-control rounded-0" type="text" id="username" name="username" value="$(username)" placeholder="User">
+							</div>
+							<div class="input-group mb-2 password-block">
+								<div class="input-group-prepend">
+									<span onclick="viewPassword();return false" class="input-group-text rounded-0"><i class="flaticon-padlock"></i></span>
+								</div>
+								<input class="form-control rounded-0" type="password" id="password" name="password" placeholder="Kata Sandi">
+							</div>
+							<div>
+								$(if error)
+								<div class="text-danger small">$(error)</div>
+								$(endif)
+							</div>
+							<button type="submit" class="btn btn-primary rounded-0 float-right mb-2"><i class="flaticon-smartwatch"></i> MASUK</button>
+							<div class="clearfix"></div>
+							<button onclick="$('.paket-wrapper').fadeToggle(600);return false" type="button" class="btn btn-info rounded-0 float-right"><i class="flaticon-dollar"></i> DAFTAR PAKET</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="p-4 paket-wrapper" style="display:none">
+		<div class="card-group"></div>
+	</div>
+	<div class="footer text-center text-white mt-3 p-3">Copyright 2020 rst.net.id</div>
+	<style>
+		.list-group-item{
+			background: none;
+		}
+	</style>
+<script type="text/javascript">
+<!--
+  document.login.username.focus();
+  function changeMode(object) {
+      $('.btn-group a').removeClass('active');
+      $(object).addClass('active');
+	  var jenis = $(object).attr('data-type');
+	  if (jenis == 'members'){
+	      $('.password-block').slideDown(500);
+	      $('#username').attr({'placeholder':'User'});
+	  } else {
+	      $('.password-block').slideUp(500);
+          $('#username').attr({'placeholder':'Kode Voucher'});
+	  }
+  }
+  function viewPassword() {
+	  if ($('#password').attr('type') == 'password'){
+	      $('#password').attr({'type':'text'});
+	  } else {
+          $('#password').attr({'type':'password'});
+	  }
+  }
+  $.ajax({
+	  url 		: 'data-paket.json',
+	  type		: 'GET',
+	  dataType	: 'JSON',
+	  error		: function (e) {
+	      $('.paket-wrapper .card-group').html('');
+	  },
+	  success	: function (e) {
+	      $('.paket-wrapper .card-group').html('');
+	      $.each(e,function (index,item) {
+	          var html =	'<div class="card">\n' +
+                  				'<ul class="list-group list-group-flush">\n' +
+                  				'<li class="list-group-item"><strong><i class="flaticon-user-images"></i> '+item.nama+'</strong></li>\n' +
+                  				'<li class="list-group-item"><i class="flaticon-dollar"></i> '+item.harga+'</li>\n' +
+                  				'<li class="list-group-item"><i class="flaticon-server"></i> '+item.bandwidth+'</li>\n' +
+                  				'<li class="list-group-item"><i class="flaticon-back-in-time"></i> '+item.durasi+'</li>\n' +
+                  				'</ul>\n' +
+                  			'</div>';
+			  $('.paket-wrapper .card-group').append(html);
+          });
+      }
+  });
+//-->
+</script>
+</body>
+
+</html>

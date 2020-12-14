@@ -1,0 +1,14 @@
+[
+  {
+    "nama" : "Paket 3000",
+    "harga" : "Rp. 3.000",
+    "bandwidth" : "5 Mbps",
+    "durasi" : "12 Jam"
+  },
+  {
+    "nama" : "Paket 5000",
+    "harga" : "Rp. 5.000",
+    "bandwidth" : "5 Mbps",
+    "durasi" : "24 Jam"
+  }
+]

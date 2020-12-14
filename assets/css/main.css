@@ -1,0 +1,13 @@
+body{
+    background:#f7f7f7 url("../images/background.jpg") no-repeat left bottom fixed;
+    background-size: cover;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after{
+    margin-left: 0;
+}
+.card{
+    background:rgba(255,255,255,.5);
+}
+.footer{
+    font-size:12px;
+}
